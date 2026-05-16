@@ -1,0 +1,54 @@
+# ── Tolkamak public repo .gitignore ────────────────────────────────────
+# Everything in this file is intentionally EXCLUDED from the GitHub
+# repo because it either exposes the proprietary control-law mechanism
+# or is internal-only working material.
+
+# Internal living state — Claude session document, not for public consumption
+CLAUDE.md
+
+# Proprietary engine implementations (the TOU accumulator + reinjector live here)
+tou_tokamak_v2.py
+tou_tokamak_v3.py
+
+# Experiments that import the proprietary engine (would expose the API surface)
+experiments/exp_001_lh_transition.py
+experiments/exp_001_postprocess_fig002.py
+experiments/exp_005_dirty_twin_blindness.py
+experiments/exp_006_dirty_twin_slew.py
+experiments/exp_007_dirty_twin_ripple.py
+experiments/exp_008_dirty_twin_ripple_stringent.py
+
+# Partner-facing engineering briefs (BOM, build plan, partner contact list)
+engineering/
+
+# Technical paper with the full mathematical formulation
+papers/technical/
+
+# Original aggregated CSVs — contain mechanism-state columns (final_inj_*,
+# final_signed_output, final_acc). Only the redacted copies in
+# papers/plain_language/v1.2/data_for_zenodo/ are public.
+data/exp_001_lh_transition.csv
+data/exp_005_dirty_twin_blindness.csv
+data/exp_006_dirty_twin_slew.csv
+data/exp_007_dirty_twin_ripple.csv
+data/exp_008_dirty_twin_ripple_stringent.csv
+
+# Per-run raw outputs — full time series of mechanism state
+outputs/
+
+# JSON frame data and rendered videos — contain mechanism state per frame
+videos/frame_data/
+videos/rendered/
+
+# Build cruft / OS / editor noise
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.log
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Temp directories
+/tmp/

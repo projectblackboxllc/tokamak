@@ -1,0 +1,68 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Tolkamak — A Toroidal Geometric Rectifier"
+authors:
+  - family-names: Woodward
+    given-names: Andrew
+    orcid: "https://orcid.org/0009-0006-9717-7161"
+    affiliation: "Project Black Box LLC (CAGE Code 11FU4)"
+license: CC-BY-NC-ND-4.0
+doi: 10.5281/zenodo.20245905
+type: software
+repository-code: "https://github.com/projectblackboxllc"
+url: "https://github.com/projectblackboxllc"
+version: "1.2"
+date-released: "2026-05-16"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20245905
+    description: "Zenodo deposit (v1.2 whitepaper)"
+  - type: doi
+    value: 10.5281/zenodo.18450491
+    description: "Companion v1 software deposit (Continues relationship)"
+keywords:
+  - toroidal self-organization
+  - tokamak
+  - reynolds stress
+  - zonal flow
+  - drift waves
+  - nonlinear feedback
+  - mode locking
+  - geometric rectifier
+  - homeostat
+abstract: >
+  Tolkamak is a 3D toroidal numerical experiment that extends the TOU
+  (Toroidal Oscillatory Unit) engine with tokamak-relevant plasma
+  physics — Hasegawa-Wakatani-style adiabaticity coupling, parallel
+  gradient on a parametric safety factor profile q(r), and bad-curvature
+  drive — while preserving two engineered mechanisms layered on top:
+  an inward-radial-flux accumulator and a phase-sensitive coherent
+  reinjection forcing. The accumulator/reinjector pair is interpreted
+  as engineered Reynolds stress driving an artificial zonal flow.
+  Toggling the mechanism on/off across a noise (drive) sweep isolates
+  its contribution to confinement and self-organization, including the
+  emergence of a four-fold poloidal attractor (Mode 4) under stochastic
+  drive up to 80% noise amplitude. A four-stage Dirty Digital Twin
+  benchmark sequence further demonstrates that the attractor survives
+  sensor sparsity, control-loop latency, actuator slew limits, and a
+  40% magnetic ripple in a parallel-transport-dominant regime — the
+  empirical disproof of linear response and discrete-state bifurcation
+  in this geometry.
+preferred-citation:
+  type: software
+  title: "Tolkamak v2 — A Toroidal Geometric Rectifier"
+  authors:
+    - family-names: Woodward
+      given-names: Andrew
+      orcid: "https://orcid.org/0009-0006-9717-7161"
+  year: 2026
+  version: "2.0"
+references:
+  - type: software
+    title: "TOU Engine (Toroidal Oscillatory Unit) — 3D"
+    authors:
+      - family-names: Woodward
+        given-names: Andrew
+        orcid: "https://orcid.org/0009-0006-9717-7161"
+    year: 2026
+    version: "1.0"

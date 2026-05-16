@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toroidal Geometric Rectifier — Interactive</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --locked: #3fb950;
+            --turbulent: #f85149;
+            --border: #30363d;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 360px;
+            min-width: 360px;
+            background-color: var(--panel-bg);
+            border-right: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            overflow-y: auto;
+        }
+
+        .main-display {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+            min-height: 600px;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--text-muted);
+            margin: 0 0 8px 0;
+        }
+
+        .control-group {
+            background: #21262d;
+            padding: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .control-header span:last-child {
+            color: var(--accent);
+            font-family: "SF Mono", Menlo, monospace;
+        }
+
+        input[type=range] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        .status-box {
+            padding: 14px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .status-turbulent {
+            background-color: rgba(248, 81, 73, 0.1);
+            color: var(--turbulent);
+            border-color: rgba(248, 81, 73, 0.4);
+        }
+
+        .status-locked {
+            background-color: rgba(63, 185, 80, 0.1);
+            color: var(--locked);
+            border-color: rgba(63, 185, 80, 0.4);
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .metric-card {
+            background: var(--bg-color);
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .metric-value {
+            font-size: 1.1rem;
+            font-family: "SF Mono", Menlo, monospace;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        canvas {
+            filter: drop-shadow(0 0 30px rgba(88, 166, 255, 0.15));
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footnote {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footnote a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 800px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; min-width: 0; border-right: none; border-bottom: 1px solid var(--border); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div>
+            <h1>Toroidal Geometric Rectifier</h1>
+            <p style="margin-top: 6px; color: var(--accent); font-size: 0.9rem;">Empirical disproof of linear-response</p>
+        </div>
+
+        <div>
+            <h2>What you're looking at</h2>
+            <p>Standard plasma physics expects an L-H transition: turbulent flows generate shear, shear suppresses turbulence — a linear-response feedback loop with a discrete threshold.</p>
+            <p>This widget shows what the Tolkamak architecture does instead. Above a low drive threshold, the accumulator saturates and the system <strong>snaps into a fixed geometric attractor</strong> set by the underlying safety-factor profile, not by the input. Push the drive harder once locked — nothing changes. The system stops responding to the input.</p>
+        </div>
+
+        <div id="statusBox" class="status-box status-turbulent">
+            Turbulent State
+        </div>
+
+        <div class="control-group">
+            <div class="control-header">
+                <span>Stochastic Drive (Input)</span>
+                <span id="driveVal">0.20</span>
+            </div>
+            <input type="range" id="drive" min="0" max="1" step="0.01" value="0.20">
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-value" id="accVal">0.20</div>
+                    <div class="metric-label">Accumulator</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="modeVal">Chaotic</div>
+                    <div class="metric-label">Dominant Mode (m)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-header">
+                <span>Core Safety Factor (q₀)</span>
+                <span id="q0Val">1.2</span>
+            </div>
+            <input type="range" id="q0" min="0.5" max="3.0" step="0.1" value="1.2">
+
+            <div class="control-header" style="margin-top: 14px;">
+                <span>Edge Shear (q₁)</span>
+                <span id="q1Val">2.0</span>
+            </div>
+            <input type="range" id="q1" min="1.0" max="5.0" step="0.1" value="2.0">
+            <p style="margin-top: 10px; font-size: 0.78rem; text-align: center; color: var(--text-muted);">Target Mode m ≈ q₀ + q₁ / 2</p>
+        </div>
+
+        <div class="footnote">
+            Qualitative visualization of the saturating-homeostat mechanism reported in <em>Tolkamak v1.2 (Zenodo)</em>. The exact control law is held proprietary; this widget reproduces only the macroscopic behavior demonstrated empirically.
+            <br><br>
+            Project Black Box LLC · CAGE 11FU4<br>
+            <a href="https://orcid.org/0009-0006-9717-7161">ORCID 0009-0006-9717-7161</a> · <a href="https://github.com/projectblackboxllc">github.com/projectblackboxllc</a>
+            <br><br>
+            <a href="index.html">← Back to project page</a>
+        </div>
+    </div>
+
+    <div class="main-display">
+        <canvas id="simCanvas" width="800" height="800"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('simCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const driveSlider = document.getElementById('drive');
+        const q0Slider = document.getElementById('q0');
+        const q1Slider = document.getElementById('q1');
+        const driveVal = document.getElementById('driveVal');
+        const q0Val = document.getElementById('q0Val');
+        const q1Val = document.getElementById('q1Val');
+        const accVal = document.getElementById('accVal');
+        const modeVal = document.getElementById('modeVal');
+        const statusBox = document.getElementById('statusBox');
+
+        let time = 0;
+        const SATURATION_THRESHOLD = 0.40;
+        const BASE_RADIUS = 250;
+        const POINTS = 360;
+        let noiseArray = new Array(POINTS).fill(0);
+
+        function updateLogic() {
+            const drive = parseFloat(driveSlider.value);
+            const q0 = parseFloat(q0Slider.value);
+            const q1 = parseFloat(q1Slider.value);
+
+            driveVal.innerText = drive.toFixed(2);
+            q0Val.innerText = q0.toFixed(1);
+            q1Val.innerText = q1.toFixed(1);
+
+            const targetMode = Math.max(2, Math.round(q0 + (q1 / 2)));
+
+            let isLocked = false;
+            let accumulator = drive;
+
+            if (drive >= SATURATION_THRESHOLD) {
+                accumulator = 1.0;
+                isLocked = true;
+            }
+
+            accVal.innerText = accumulator.toFixed(2);
+
+            if (isLocked) {
+                statusBox.className = 'status-box status-locked';
+                statusBox.innerText = 'Geometric Lock Achieved';
+                modeVal.innerText = targetMode;
+            } else {
+                statusBox.className = 'status-box status-turbulent';
+                statusBox.innerText = 'Turbulent State';
+                modeVal.innerText = 'Chaotic';
+            }
+
+            return { drive, q0, q1, targetMode, isLocked, accumulator };
+        }
+
+        function drawFrame() {
+            const state = updateLogic();
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            // Reference ring
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, BASE_RADIUS, 0, Math.PI * 2);
+            ctx.strokeStyle = '#30363d';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 6]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Wave
+            ctx.beginPath();
+
+            for (let i = 0; i <= POINTS; i++) {
+                const angle = (i / POINTS) * Math.PI * 2;
+                let amplitudeOffset = 0;
+
+                if (state.isLocked) {
+                    const waveAmplitude = 40;
+                    amplitudeOffset = Math.sin(state.targetMode * angle) * Math.cos(time * 0.05) * waveAmplitude;
+                    ctx.strokeStyle = '#3fb950';
+                    ctx.shadowColor = '#3fb950';
+                    ctx.shadowBlur = 18;
+                    ctx.lineWidth = 4;
+                } else {
+                    noiseArray[i % POINTS] += (Math.random() - 0.5) * 5;
+                    noiseArray[i % POINTS] *= 0.9;
+
+                    const noiseAmplitude = state.drive * 100;
+                    amplitudeOffset = (noiseArray[i % POINTS] / 10) * noiseAmplitude;
+
+                    ctx.strokeStyle = '#f85149';
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                    ctx.lineWidth = 2;
+                }
+
+                const r = BASE_RADIUS + amplitudeOffset;
+                const x = centerX + r * Math.cos(angle);
+                const y = centerY + r * Math.sin(angle);
+
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+
+            ctx.closePath();
+            ctx.stroke();
+
+            time++;
+            requestAnimationFrame(drawFrame);
+        }
+
+        drawFrame();
+    </script>
+</body>
+</html>
