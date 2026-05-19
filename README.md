@@ -2,15 +2,15 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20245905.svg)](https://doi.org/10.5281/zenodo.20245905)
 [![Companion v1 Software](https://img.shields.io/badge/Companion%20v1%20(software)-10.5281%2Fzenodo.18450491-blue)](https://doi.org/10.5281/zenodo.18450491)
-[![Site](https://img.shields.io/badge/site-projectblackboxllc.github.io%2Ftolkamak-blue)](https://projectblackboxllc.github.io/tolkamak/)
+[![Site](https://img.shields.io/badge/site-projectblackboxllc.github.io%2Ftokamak-blue)](https://projectblackboxllc.github.io/tokamak/)
 
 Author: Andrew Woodward  
 ORCID: [0009-0006-9717-7161](https://orcid.org/0009-0006-9717-7161)  
 Affiliation: Project Black Box LLC (CAGE Code 11FU4)  
-Source: https://github.com/projectblackboxllc/tolkamak  
+Source: https://github.com/projectblackboxllc/tokamak  
 Version: v1.2 (whitepaper) / v1.0 (this engine)  
 
-**Whitepaper PDF:** [`papers/plain_language/v1.2/tolkamak_zenodo_v1.2.pdf`](papers/plain_language/v1.2/tolkamak_zenodo_v1.2.pdf) · **Live site:** https://projectblackboxllc.github.io/tolkamak/
+**Whitepaper PDF:** [`papers/plain_language/v1.2/tokamak_zenodo_v1.2.pdf`](papers/plain_language/v1.2/tokamak_zenodo_v1.2.pdf) · **Live site:** https://projectblackboxllc.github.io/tokamak/
 
 ---
 
@@ -194,12 +194,12 @@ If you use this work, please cite it using the included CITATION.cff.
 
 ---
 
-## Tolkamak v2 — Experiment 001 Findings (May 2026, appended)
+## Tokamak v2 — Experiment 001 Findings (May 2026, appended)
 
 > Append-only section. v1 (above) describes the original Zenodo Mode-4 result with `tou_tokamak.py`. v2 introduces `tou_tokamak_v2.py` (with adiabaticity coupling, curvature drive, zonal/turbulent decomposition, JSON frame export) and a paired-run experiment infrastructure. v2 does NOT replace v1.
 
 ### Why this matters
-This toroid was built to disprove two assumptions that run through most of physics and engineering: that systems respond linearly to drive, and that complex-system self-organization proceeds via discrete-state bifurcations. Experiment 001 disproves both, in the same data set, with one toggled mechanism. The drive-independent attractor reported below is the empirical disproof — not a curiosity. See `papers/plain_language/v1.0/tolkamak_plain_v1.0.md` and `papers/technical/v1.0/tolkamak_technical_v1.0.md` §6.6 for the full claim and its scope.
+This toroid was built to disprove two assumptions that run through most of physics and engineering: that systems respond linearly to drive, and that complex-system self-organization proceeds via discrete-state bifurcations. Experiment 001 disproves both, in the same data set, with one toggled mechanism. The drive-independent attractor reported below is the empirical disproof — not a curiosity. See `papers/plain_language/v1.0/tokamak_plain_v1.0.md` and `papers/technical/v1.0/tokamak_technical_v1.0.md` §6.6 for the full claim and its scope.
 
 ### What v2 adds
 - Hasegawa-Wakatani-style adiabaticity coupling α(φ − n) between potential and density fields
@@ -239,4 +239,3 @@ The pre-experiment hypothesis was a textbook L-H transition (zonal-to-turbulent 
 
 ### Caveats
 This is a first-pass result on a smaller grid (N=65) and shorter run (2500 steps) than the v1 published result. Replication at v1 conditions, ensemble runs across seeds, and flux-surface probe relayout are on the followup list. See `reports/report_001_lh_phase_diagram.md` §6-7 for the full limitations table.
-
