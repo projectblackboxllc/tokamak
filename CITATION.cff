@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it as below."
-title: "Tolkamak — A Toroidal Geometric Rectifier"
+title: "Tokamak — A Toroidal Geometric Rectifier"
 authors:
   - family-names: Woodward
     given-names: Andrew
@@ -31,7 +31,7 @@ keywords:
   - geometric rectifier
   - homeostat
 abstract: >
-  Tolkamak is a 3D toroidal numerical experiment that extends the TOU
+  Tokamak is a 3D toroidal numerical experiment that extends the TOU
   (Toroidal Oscillatory Unit) engine with tokamak-relevant plasma
   physics — Hasegawa-Wakatani-style adiabaticity coupling, parallel
   gradient on a parametric safety factor profile q(r), and bad-curvature
@@ -50,7 +50,7 @@ abstract: >
   in this geometry.
 preferred-citation:
   type: software
-  title: "Tolkamak v2 — A Toroidal Geometric Rectifier"
+  title: "Tokamak v2 — A Toroidal Geometric Rectifier"
   authors:
     - family-names: Woodward
       given-names: Andrew
