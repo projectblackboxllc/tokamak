@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tolkamak — A Toroidal Geometric Rectifier</title>
+  <title>Tokamak — A Toroidal Geometric Rectifier</title>
   <meta name="description" content="Empirical disproof of linear-response and binary transitions in toroidal plasma confinement. Project Black Box LLC.">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -30,10 +30,10 @@
     <section id="thesis">
       <h2><span class="num">01</span>What this work is</h2>
       <div class="plain">
-        Two assumptions run silently through most of physics, engineering, and complex-systems modeling: that a system responds in proportion to how hard you push it, and that when it self-organizes it does so by switching between discrete states. We built a toroidal numerical experiment — Tolkamak — to test whether neither of those is necessary, given the right geometry and the right feedback rule. Across eight months of computational work, two papers on Zenodo, and a four-stage falsification protocol, the answer is that neither is necessary.
+        Two assumptions run silently through most of physics, engineering, and complex-systems modeling: that a system responds in proportion to how hard you push it, and that when it self-organizes it does so by switching between discrete states. We built a toroidal numerical experiment — Tokamak — to test whether neither of those is necessary, given the right geometry and the right feedback rule. Across eight months of computational work, two papers on Zenodo, and a four-stage falsification protocol, the answer is that neither is necessary.
       </div>
       <div class="technical">
-        Tolkamak is a 3D toroidal simulation extending the original TOU (Toroidal Oscillatory Unit) engine with Hasegawa-Wakatani-style adiabaticity, parallel-gradient transport on a parametric safety-factor profile, and bad-curvature drive. Layered on this substrate are two engineered mechanisms — an inward radial energy-flux accumulator and a phase-sensitive coherent reinjection forcing on a toroidal ring kernel — which together form a saturating-actuator geometric rectifier. The empirical claim of this release is the disproof, in this geometry, of two framings widely applied to driven dissipative systems on toroidal manifolds: (a) linear response of steady-state to input drive, and (b) bifurcation as the mechanism of self-organization.
+        Tokamak is a 3D toroidal simulation extending the original TOU (Toroidal Oscillatory Unit) engine with Hasegawa-Wakatani-style adiabaticity, parallel-gradient transport on a parametric safety-factor profile, and bad-curvature drive. Layered on this substrate are two engineered mechanisms — an inward radial energy-flux accumulator and a phase-sensitive coherent reinjection forcing on a toroidal ring kernel — which together form a saturating-actuator geometric rectifier. The empirical claim of this release is the disproof, in this geometry, of two framings widely applied to driven dissipative systems on toroidal manifolds: (a) linear response of steady-state to input drive, and (b) bifurcation as the mechanism of self-organization.
       </div>
     </section>
 
@@ -65,7 +65,7 @@
         <strong>What to try.</strong> (1) Set drive to 0.2 — see chaos. (2) Crank drive past 0.4 — watch the snap to a green standing wave. (3) With the lock engaged, adjust q₀ and q₁ — the mode number changes, but the system stays locked. (4) Drop drive back below 0.4 — chaos returns. The transition is a *saturation threshold*, not a phase transition.
       </div>
       <div class="sim-embed">
-        <iframe src="sim.html" title="Tolkamak interactive simulation"></iframe>
+        <iframe src="sim.html" title="Tokamak interactive simulation"></iframe>
         <div class="sim-note">Qualitative visualization. The exact control-law mathematics is held proprietary; this widget reproduces the macroscopic saturating-homeostat behavior demonstrated in the empirical results.</div>
       </div>
     </section>
@@ -76,7 +76,7 @@
         A mathematically perfect simulation isn't proof of anything physically useful. To get closer to what a real machine would experience, we built a four-stage stress test: only a few sensors instead of perfect information; control commands that arrive late; an "amplifier" that can't change its output instantly; and a doughnut shape that isn't perfectly smooth. Then we re-ran every benchmark, with pass/fail thresholds set before the runs started.
       </div>
       <div class="technical">
-        Four benchmarks layered on the Tolkamak v3 engine, each toggling a specific physical-realism constraint individually: (1) sensor sparsity from full-band integration down to 4 discrete probes, plus control-loop latency up to 20 time-steps, plus 5% Gaussian sensor noise; (2) actuator slew rate across a 500× range; (3) multiplicative ripple on the safety-factor profile up to 40% amplitude in three different angular harmonics; (4) a stringent re-run of the ripple test under inverted anisotropy (parallel-to-perpendicular coupling ratio ≈ 11), physically representative of plasma-edge fluctuation transport.
+        Four benchmarks layered on the Tokamak v3 engine, each toggling a specific physical-realism constraint individually: (1) sensor sparsity from full-band integration down to 4 discrete probes, plus control-loop latency up to 20 time-steps, plus 5% Gaussian sensor noise; (2) actuator slew rate across a 500× range; (3) multiplicative ripple on the safety-factor profile up to 40% amplitude in three different angular harmonics; (4) a stringent re-run of the ripple test under inverted anisotropy (parallel-to-perpendicular coupling ratio ≈ 11), physically representative of plasma-edge fluctuation transport.
       </div>
 
       <h3>Benchmark 1 — Sensor Sparsity and Latency</h3>
@@ -116,7 +116,7 @@
       <div class="industries">
         <div class="industry">
           <h4>Fusion Energy</h4>
-          <p>The largest unsolved problem in commercial fusion is steady-state confinement without edge-localized burst events (ELMs). The Tolkamak architecture is functionally an engineered analog of the L-H transition mechanism — geometric coherence held by an actuator rather than triggered by a fragile threshold. Relevant partners: CFS (SPARC), Tokamak Energy, General Atomics, DOE INFUSE.</p>
+          <p>The largest unsolved problem in commercial fusion is steady-state confinement without edge-localized burst events (ELMs). The Tokamak architecture is functionally an engineered analog of the L-H transition mechanism — geometric coherence held by an actuator rather than triggered by a fragile threshold. Relevant partners: CFS (SPARC), Tokamak Energy, General Atomics, DOE INFUSE.</p>
         </div>
         <div class="industry">
           <h4>Aerospace Propulsion</h4>
@@ -128,7 +128,7 @@
         </div>
         <div class="industry">
           <h4>AI Safety (Parent Domain)</h4>
-          <p>This is the connection that motivated the program. A safe AI system has to maintain coherent behavior under adversarial perturbation. Most current work treats robustness as a training problem. The Tolkamak result suggests an alternative — construct the geometry so coherence is the natural attractor. We are not claiming this solves AI safety; we are claiming the mechanism class deserves study, and that family has not been adequately explored.</p>
+          <p>This is the connection that motivated the program. A safe AI system has to maintain coherent behavior under adversarial perturbation. Most current work treats robustness as a training problem. The Tokamak result suggests an alternative — construct the geometry so coherence is the natural attractor. We are not claiming this solves AI safety; we are claiming the mechanism class deserves study, and that family has not been adequately explored.</p>
         </div>
       </div>
     </section>
@@ -140,7 +140,7 @@
       </div>
 
       <div class="callout">
-        <strong>Reproducibility.</strong> The Tolkamak engine source, all experiment scripts, aggregated data CSVs, per-run raw outputs, and figures are open at <a href="https://github.com/projectblackboxllc" style="color:#58a6ff;">github.com/projectblackboxllc</a>. The phase-sensitive reinjection kernel implementation is held proprietary pending IP review; its input/output behavior is fully documented in the paper.
+        <strong>Reproducibility.</strong> The Tokamak engine source, all experiment scripts, aggregated data CSVs, per-run raw outputs, and figures are open at <a href="https://github.com/projectblackboxllc" style="color:#58a6ff;">github.com/projectblackboxllc</a>. The phase-sensitive reinjection kernel implementation is held proprietary pending IP review; its input/output behavior is fully documented in the paper.
       </div>
 
       <h3>Citation</h3>
@@ -162,14 +162,14 @@ ORCID: 0009-0006-9717-7161
         This is a numerical experiment. There are no real ions, no real magnetic fields, no real heat. It is mathematical: a particular geometry plus a particular feedback rule, run on a computer, with the result being how the energy distributes itself in the simulation. It is <strong>not</strong> a fusion reactor and we are not claiming it is.
       </div>
       <div class="plain">
-        What it <strong>is</strong>: a clean, inspectable disproof of two specific assumptions; a reproducible starting point that anyone can verify; a defensible prior-art record; and a credible path forward toward a bench-scale empirical validation device (Tolkamak-0). The honest framing is that this is what comes before bench validation, not what replaces it.
+        What it <strong>is</strong>: a clean, inspectable disproof of two specific assumptions; a reproducible starting point that anyone can verify; a defensible prior-art record; and a credible path forward toward a bench-scale empirical validation device (Tokamak-0). The honest framing is that this is what comes before bench validation, not what replaces it.
       </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <p>Tolkamak / TOU — Project Black Box LLC · CAGE 11FU4 · 2026</p>
+    <p>Tokamak / TOU — Project Black Box LLC · CAGE 11FU4 · 2026</p>
     <p>Andrew Woodward · <a href="https://orcid.org/0009-0006-9717-7161">ORCID 0009-0006-9717-7161</a> · <a href="https://github.com/projectblackboxllc">github.com/projectblackboxllc</a></p>
     <p><a href="#paper">Citation</a> · <a href="sim.html">Interactive widget</a></p>
   </footer>
